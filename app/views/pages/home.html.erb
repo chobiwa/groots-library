@@ -1,2 +1,7 @@
-<h1 style="text-align:center;">Library System </h1>
-<p style="text-align:center;"><%= link_to 'Log in', login_path %></p>
+<div style="text-align:center;">
+<h1>Library System </h1>
+<p><% if logged_in? %>
+    <%= link_to 'Logout', logout_path %>
+    <%else %> <%= link_to 'Login', login_path %><%end %></p>
+<p><%= link_to 'Librarians',librarians_path %> </p>
+    </div>

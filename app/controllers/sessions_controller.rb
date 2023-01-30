@@ -13,4 +13,9 @@ class SessionsController < ApplicationController
       render 'new', status: 401
     end
   end
+  def destroy
+    session[:librarian_id] = nil
+    flash[:notice] = "Logged out successfully"
+    redirect_to root_path
+  end
 end

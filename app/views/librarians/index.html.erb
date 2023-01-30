@@ -1,0 +1,23 @@
+<h1>Librarians list</h1>
+<table>
+  <thead>
+  <tr>
+    <th>Librarian name</th>
+    <th>Email</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @librarians.each do |librarian| %>
+    <tr>
+      <td>
+        <% if logged_in? && librarian==current_librarian %>
+           <%=link_to librarian.name ,librarian%></td>
+        <%else %>
+          <%=librarian.name %>
+        <%end %>
+      <td><%= librarian.email %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>
