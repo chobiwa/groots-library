@@ -1,0 +1,17 @@
+<div style="text-align:center;">
+  <h2>Add new Member</h2>
+  <%if @member.errors.any? %>
+    <ul>
+      <% @member.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+    </ul>
+  <%end %>
+  <%= form_with(model:@member ,local:true) do |member| %>
+    <p>
+      <%= member.label :name ,'Name of the member' %><br/>
+      <%= member.text_field :name%>
+    </p>
+    <p><%= member.submit %></p>
+  <% end %>
+</div>

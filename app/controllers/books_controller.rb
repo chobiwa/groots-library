@@ -12,7 +12,7 @@ class BooksController < ApplicationController
       flash[:notice]='Added to library successfully'
       redirect_to @book
     else
-      render 'new'
+      render 'new',status: 401
     end
   end
   def show

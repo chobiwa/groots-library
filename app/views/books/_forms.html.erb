@@ -1,7 +1,8 @@
+<div style="text-align:center;">
 <%if @book.errors.any? %>
   <ul>
     <% @book.errors.full_messages.each do |msg| %>
-      <li><%= msg %></li>
+      <%=msg %><br/>
     <% end %>
   </ul>
 <%end %>
@@ -20,4 +21,4 @@
   </p>
   <p><%= book.submit %></p>
 <% end %>
-
+</div>
