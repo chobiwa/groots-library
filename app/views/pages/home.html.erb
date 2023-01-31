@@ -1,8 +1,13 @@
 <div style="text-align:center;">
 <h1>Library System </h1>
-<p><% if logged_in? %>
-    <%= link_to 'Logout', logout_path %>
-    <%else %> <%= link_to 'Login', login_path %><%end %></p>
+<p><% if librarian_logged_in? %>
+        <%= link_to 'Logout', librarian_logout_path %>
+    <%elsif member_logged_in?%>
+    <%= link_to 'Logout', member_logout_path %>
+  <%else %> <p><%= link_to 'Login as a librarian', librarian_login_path %></p>
+    <%= link_to 'Login as a member', member_login_path %>
+  <%end %></p>
+
 <p><%= link_to 'Librarians',librarians_path %> </p>
   <p><%= link_to 'All Books',books_path %> </p>
     </div>

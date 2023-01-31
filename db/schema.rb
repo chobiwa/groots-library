@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_30_115555) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_31_064941) do
   create_table "books", force: :cascade do |t|
     t.string "name"
     t.string "authors"
@@ -18,13 +18,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_30_115555) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "librarian_id"
-  end
-
-  create_table "librarian_members", force: :cascade do |t|
-    t.integer "librarian_id"
-    t.integer "member_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
   end
 
   create_table "librarians", force: :cascade do |t|
@@ -35,10 +28,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_30_115555) do
     t.string "password_digest"
   end
 
+  create_table "member_books", force: :cascade do |t|
+    t.integer "member_id"
+    t.integer "book_id"
+    t.datetime "return_date"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "members", force: :cascade do |t|
     t.string "name"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "librarian_id"
+    t.string "password_digest"
   end
 
 end

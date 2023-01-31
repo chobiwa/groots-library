@@ -8,6 +8,7 @@ class BooksController < ApplicationController
   end
   def create
     @book=Book.new(params.require(:book).permit(:name,:authors,:count))
+    @book.librarian=current_librarian
     if @book.save
       flash[:notice]='Added to library successfully'
       redirect_to @book
@@ -30,6 +31,12 @@ class BooksController < ApplicationController
   end
   def index
     @books = Book.all
+  end
+  def checkout
+    @book = Book.find(params[:id])
+    if @book.count>0
+
+    end
   end
 
   private

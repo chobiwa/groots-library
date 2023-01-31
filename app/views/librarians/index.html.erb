@@ -12,7 +12,7 @@
   <% @librarians.each do |librarian| %>
     <tr>
       <td>
-        <% if logged_in? && librarian==current_librarian %>
+        <% if librarian_logged_in? && librarian==current_librarian %>
            <%=link_to librarian.name ,librarian%></td>
         <%else %>
           <%=librarian.name %>
@@ -22,7 +22,10 @@
   <% end %>
   </tbody>
 </table>
-<p><%= link_to 'Add member' ,new_member_path %></p>
+  <%if librarian_logged_in? %>
+  <p><%= link_to 'Add member' ,new_member_path %></p>
+    <p><%= link_to 'All members' ,members_path %></p>
+    <%end %>
 <p><%= link_to 'All books' ,books_path %></p>
 <p><%= link_to 'home' ,root_path %></p>
 </div>

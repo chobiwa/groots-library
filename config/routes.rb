@@ -1,9 +1,13 @@
 Rails.application.routes.draw do
   root "pages#home"
   resources :librarians
-  get 'login', to: 'sessions#new'
-  post 'login', to: 'sessions#create'
-  get 'logout', to: 'sessions#destroy'
+  get 'librarian/login', to: 'librarians/sessions#new'
+  post 'librarian/login', to: 'librarians/sessions#create'
+  get 'librarian/logout', to: 'librarians/sessions#destroy'
   resources :books
+  get 'member/login', to: 'members/sessions#new'
+  post 'member/login', to: 'members/sessions#create'
+  get 'member/logout', to: 'members/sessions#destroy'
   resources :members, except: [:destroy]
+  get 'books/checkout',to: 'books#checkout'
 end

@@ -1,0 +1,15 @@
+<div style="text-align:center;">
+<h2>Member Login page</h2>
+<%= form_with(scope: :session ,url: member_login_path,local:true) do |member| %>
+  <p>
+    <%= member.label :name %><br/>
+    <%= member.text_field :name%>
+  </p>
+  <p>
+    <%= member.label :password %><br/>
+    <%= member.text_field :password %>
+  </p>
+  <p><%= member.submit 'login' %></p>
+    <p><%= link_to 'home' ,root_path %></p>
+<% end %>
+</div>

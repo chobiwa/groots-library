@@ -2,7 +2,7 @@
 <h1><%="#{@librarian.name} "%>profile</h1>
 <p>Name: <%= @librarian.name %></p>
 <p>Email: <%= @librarian.email %></p>
-  <h2>All Books</h2>
+  <h2>Books in this library</h2>
   <table style="margin-left:auto;margin-right: auto;">
     <thead>
     <tr>
@@ -24,8 +24,25 @@
     <% end %>
     </tbody>
   </table><br/>
+
+  <h2>Members in this library</h2>
+  <table style="margin-left:auto;margin-right: auto;">
+    <thead>
+    <tr>
+      <th>Member name</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    <% @members.each do |member| %>
+      <tr>
+        <td><%=link_to member.name ,member%></td>
+      </tr>
+    <% end %>
+    </tbody>
+  </table><br/>
   <p><%= link_to 'Add member' ,new_member_path %></p>
   <p><%= link_to 'Add book' ,new_book_path %></p>
-  <p><%= link_to 'logout' ,logout_path %></p>
+  <p><%= link_to 'logout' ,librarian_logout_path %></p>
 <p><%= link_to 'home' ,root_path %></p>
 </div>
