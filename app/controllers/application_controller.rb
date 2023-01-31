@@ -16,8 +16,14 @@ class ApplicationController < ActionController::Base
   end
   def require_librarian
     if !librarian_logged_in?
-      flash[:alert] = "You must be logged in to perform that action"
+      flash[:alert] = "You must be a librarian to perform that action"
       redirect_to librarian_login_path
+    end
+  end
+  def require_member
+    if !member_logged_in?
+      flash[:alert] = "You must be a member to perform that action"
+      redirect_to member_login_path
     end
   end
 end

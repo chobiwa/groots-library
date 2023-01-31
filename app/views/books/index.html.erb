@@ -5,6 +5,7 @@
     <th>Book name</th>
     <th>Author(s)</th>
     <th>Count</th>
+    <th>Actions</th>
   </tr>
   </thead>
 
@@ -22,6 +23,9 @@
       <td><%if librarian_logged_in? %>
           <%=link_to 'Update' ,edit_book_path(book)%><%end %>
         </td>
+      <td><%if member_logged_in? %>
+          <%=link_to 'borrow' ,borrow_path(book)%><%end %>
+      </td>
     </tr>
   <% end %>
   </tbody>

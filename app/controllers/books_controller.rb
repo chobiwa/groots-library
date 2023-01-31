@@ -1,6 +1,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: [:show, :edit, :update]
   before_action :require_librarian, only: [:edit, :update,:new,:create]
+  before_action :require_member, only: [:borrow]
   before_action :require_same_librarian, only: [:edit, :update]
 
   def new
@@ -32,10 +33,24 @@ class BooksController < ApplicationController
   def index
     @books = Book.all
   end
-  def checkout
+  def borrow
     @book = Book.find(params[:id])
     if @book.count>0
-
+      @mb=MemberBook.new
+      @mb.member=current_member
+      @mb.book=@book
+      if @mb.save
+        @book.decrement(:count)
+        @book.save!
+        puts @book.count
+        flash[:notice] = "Borrowed book successfully"
+        redirect_to books_path
+      else
+        render 'index'
+      end
+    else
+      flash[:notice]="No available copies"
+      redirect_to books_path
     end
   end
 
