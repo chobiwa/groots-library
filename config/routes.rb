@@ -11,5 +11,5 @@ Rails.application.routes.draw do
   resources :members, except: [:destroy]
   get 'book/borrow/:id',to: 'books#borrow',as: 'borrow'
   get 'book/returnBook/:id',to: 'books#return_book', :as => 'returnBook'
-  resources :member_books
+  get 'member/history/:id',to: 'books#borrowing_history', :as => 'borrowHistory'
 end

@@ -67,6 +67,10 @@ class BooksController < ApplicationController
       redirect_to books_path
     end
   end
+  def borrowing_history
+    @member=Member.find(params[:id])
+    @member_books=MemberBook.where(member_id: @member.id)
+  end
 
   private
   def set_book
