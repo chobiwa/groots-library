@@ -55,7 +55,8 @@ class BooksController < ApplicationController
   def return_book
     @book = Book.find(params[:id])
     if MemberBook.where(member_id:current_member.id,book_id: @book.id).first.return_date.nil?
-      @mb.update(return_date:Date.today)
+      @mb=MemberBook.where(member_id:current_member.id,book_id: @book.id).first
+      @mb[:return_date]=Date.today
       @mb.save!
       flash[:notice]="Book returned successfully"
       @book.increment(:count)
