@@ -9,5 +9,7 @@ Rails.application.routes.draw do
   post 'member/login', to: 'members/sessions#create'
   get 'member/logout', to: 'members/sessions#destroy'
   resources :members, except: [:destroy]
-  get 'book/borrow:id',to: 'books#borrow',as: 'borrow'
+  get 'book/borrow/:id',to: 'books#borrow',as: 'borrow'
+  get 'book/returnBook/:id',to: 'books#return_book', :as => 'returnBook'
+  resources :member_books
 end

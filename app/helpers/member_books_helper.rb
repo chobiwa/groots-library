@@ -1,0 +1,2 @@
+module MemberBooksHelper
+end

@@ -1,0 +1,26 @@
+<h1 style="text-align: center;">Borrowing History</h1>
+<table style="margin-left:auto;margin-right: auto;">
+  <thead>
+  <tr>
+    <th>Book name</th>
+    <th>Author(s)</th>
+    <th>Issued_date</th>
+    <th>Returned_date</th>
+  </tr>
+  </thead>
+
+  <tbody>
+  <% @member_books.each do |mb| %>
+    <tr>
+      <td><%=mb.book.name%></td>
+      <td><%= mb.book.authors %></td>
+      <td><%=mb.issue_date %></td>
+      <td><%=mb.return_date %></td>
+    </tr>
+  <% end %>
+  </tbody>
+</table><br/>
+<p style="text-align: center"><%= link_to 'profile' ,member_path(current_member) %></p>
+<p style="text-align: center"><%= link_to 'all books' ,books_path %></p>
+<p style="text-align: center"><%= link_to 'home' ,root_path %></p>
+

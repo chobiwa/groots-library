@@ -39,17 +39,30 @@ class BooksController < ApplicationController
       @mb=MemberBook.new
       @mb.member=current_member
       @mb.book=@book
+      @mb.issue_date=Date.today
       if @mb.save
         @book.decrement(:count)
         @book.save!
         puts @book.count
         flash[:notice] = "Borrowed book successfully"
         redirect_to books_path
-      else
-        render 'index'
       end
     else
       flash[:notice]="No available copies"
+      redirect_to books_path
+    end
+  end
+  def return_book
+    @book = Book.find(params[:id])
+    if MemberBook.where(member_id:current_member.id,book_id: @book.id).first.return_date.nil?
+      @mb.update(return_date:Date.today)
+      @mb.save!
+      flash[:notice]="Book returned successfully"
+      @book.increment(:count)
+      @book.save!
+      redirect_to books_path
+    else
+      flash[:notice]="Book not borrowed"
       redirect_to books_path
     end
   end
