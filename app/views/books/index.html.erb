@@ -26,8 +26,11 @@
       <td><%if member_logged_in? %>
             <%if MemberBook.where(member_id:current_member.id,book_id: book.id).first.issue_date.nil? %>
               <%=link_to 'borrow' ,borrow_path(book)%>
-            <%else %>
+            <%elsif MemberBook.where(member_id:current_member.id,book_id: book.id).first.return_date.nil?  %>
               <%=link_to 'return' ,returnBook_path(book)%>
+            <%else %>
+            <%=link_to 'borrow' ,borrow_path(book)%>
+            <%=link_to 'return' ,returnBook_path(book)%>
             <%end %>
           <%end %>
       </td>

@@ -54,18 +54,21 @@ class BooksController < ApplicationController
   end
   def return_book
     @book = Book.find(params[:id])
-    if MemberBook.where(member_id:current_member.id,book_id: @book.id).first.return_date.nil?
-      @mb=MemberBook.where(member_id:current_member.id,book_id: @book.id).first
-      @mb[:return_date]=Date.today
-      @mb.save!
-      flash[:notice]="Book returned successfully"
-      @book.increment(:count)
-      @book.save!
-      redirect_to books_path
-    else
+    @mbs=MemberBook.where(member_id:current_member.id,book_id: @book.id)
+    @mbs.each do |mb|
+      if mb.return_date.nil?
+        mb[:return_date]=Date.today
+        mb.save!
+        flash[:notice]="Book returned successfully"
+        @book.increment(:count)
+        @book.save!
+        break
+      else
+        nil
+      end
       flash[:notice]="Book not borrowed"
-      redirect_to books_path
     end
+    redirect_to books_path
   end
   def borrowing_history
     @member=Member.find(params[:id])

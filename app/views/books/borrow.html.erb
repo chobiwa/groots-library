@@ -1,0 +1,27 @@
+<h1 style="text-align:center;">Borrow Book</h1>
+<div style="text-align:center;">
+  <%if @book.errors.any? %>
+    <ul>
+      <% @book.errors.full_messages.each do |msg| %>
+        <%=msg %><br/>
+      <% end %>
+    </ul>
+  <%end %>
+  <%= form_with(model:@book ,local:true) do |book| %>
+    <p>
+      <%= book.label :Name ,'Name of the book',:label => false, :readonly => true %><br/>
+      <%= book.text_field :name%>
+    </p>
+    <p>
+      <%= book.label :Authors,'Author(s)',:readonly => true %><br/>
+      <%= book.text_field :authors%>
+    </p>
+    <p>
+      <%= book.label :count,:readonly => true %><br/>
+      <%= book.number_field :count%>
+    </p>
+    <p>
+      <%= book.submit 'borrow' %></p>
+  <% end %>
+</div>
+

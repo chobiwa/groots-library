@@ -37,7 +37,7 @@
     <% @members.each do |member| %>
       <tr>
         <td><%=link_to member.name ,member%></td>
-        <td><%=link_to 'borrowing history' ,member_books_path(member)%></td>
+        <td><%=link_to 'borrowing history' ,borrowHistory_path(member)%></td>
       </tr>
     <% end %>
     </tbody>
